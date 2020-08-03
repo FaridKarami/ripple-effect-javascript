@@ -5,7 +5,6 @@ window.onload = () => {
     for (const item of fk8Ripple) {
         const self = item;
         item.addEventListener('mousedown', function(e) {
-
             if(self.classList.contains('disabled')) {
                 return;
             }
@@ -22,14 +21,14 @@ window.onload = () => {
 
             // create ripple and append
             const rippleAnimate = document.createElement('div');
-            rippleAnimate.classList.add('ripple');
+            rippleAnimate.classList.add('fk8-ripple');
             self.append(rippleAnimate);
 
             if(!initPos || initPos === "static") {
                 self.style.position = 'relative';
             }
 
-            rippleAnimate.classList.add('rippleWave');
+            rippleAnimate.classList.add('fk8-wave');
             rippleAnimate.setAttribute('style', [
                 `width: ${dia}px`,
                 `height: ${dia}px`,

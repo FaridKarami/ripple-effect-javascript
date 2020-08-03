@@ -2,29 +2,34 @@
     overflow: hidden;
     outline: none;
 }
-.ripple {
+.fk8-ripple {
     position: absolute;
-    top:0; left:0; bottom:0; right:0;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
     transform: translateZ(0);
     border-radius: inherit;
     pointer-events: none;
-    animation: ripple-shadow 0.4s forwards;
+    animation: anim-fk8-ripple 0.3s forwards;
 }
-.rippleWave {
+
+@keyframes fk8-ripple {
+    0%   { box-shadow: 0 0 0 rgba(0, 0, 0, 0); }
+    50%  { box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5); }
+    100% { box-shadow: 0 0 0 rgba(0, 0, 0, 0); }
+}
+
+.fk8-wave {
     backface-visibility: hidden;
     position: absolute;
     border-radius: 50%;
-    transform: scale(0.7);
+    transform: scale(0.5);
     background: rgba(0, 0, 0, 0.5);
-    box-shadow: #ffffff 0 0 3px 0;
-    opacity: 0.45;
-    animation: ripple 2s forwards;
+    opacity: 0.5;
+    animation: anim-fk8-wave 2s;
 }
-@keyframes ripple-shadow {
-    0%   {box-shadow: 0 0 0 rgba(0,0,0,0.0);}
-    20%  {box-shadow: 0 4px 16px rgba(0,0,0,0.3);}
-    100% {box-shadow: 0 0 0 rgba(0,0,0,0.0);}
-}
-@keyframes ripple {
-    to {transform: scale(24); opacity:0;}
+
+@keyframes anim-fk8-wave {
+    100% { transform: scale(20); opacity:0; }
 }
