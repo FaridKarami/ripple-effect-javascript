@@ -1,35 +1,70 @@
-[fk8-ripple] {
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #aa5b56;
+    font: 62.5% "open-sans", sans-serif;
+}
+
+/* ~~~~~~~~~~~~~~
+     Button
+~~~~~~~~~~~~~~ */
+.btn {
+    height: 42px;
+    line-height: 42px;
+    display: block;
+    margin: 2em;
+    padding: 0 2em;
+    border-radius: 2px;
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2);
+    font-size: 1.4em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #fff;
+    transition: background 0.25s ease-in-out;
+}
+
+[animation] {
+    position: relative;
     overflow: hidden;
-    outline: none;
-}
-.fk8-ripple {
-    position: absolute;
-    top:0;
-    right:0;
-    bottom:0;
-    left:0;
-    transform: translateZ(0);
-    border-radius: inherit;
-    pointer-events: none;
-    animation: anim-fk8-ripple 0.3s forwards;
 }
 
-@keyframes fk8-ripple {
-    0%   { box-shadow: 0 0 0 rgba(0, 0, 0, 0); }
-    50%  { box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5); }
-    100% { box-shadow: 0 0 0 rgba(0, 0, 0, 0); }
+/* ~~~~~~~~~~~~~~
+     Colors
+~~~~~~~~~~~~~~ */
+.btn-blue {
+    background: #00bcd4;
+}
+.btn-blue:hover {
+    background: #008fa1;
 }
 
-.fk8-wave {
-    backface-visibility: hidden;
+.btn-green {
+    background: #4caf50;
+}
+.btn-green:hover {
+    background: #3d8b40;
+}
+
+/* ~~~~~~~~~~~~~~
+  Ripple Effect
+~~~~~~~~~~~~~~ */
+.ripple {
+    width: 2px;
+    height: 2px;
     position: absolute;
     border-radius: 50%;
-    transform: scale(0.5);
-    background: rgba(0, 0, 0, 0.5);
-    opacity: 0.5;
-    animation: anim-fk8-wave 2s;
+    background-color: rgba(255, 255, 255, 0.5);
+    animation: rippleEffect 0.5s ease-in-out;
 }
 
-@keyframes anim-fk8-wave {
-    100% { transform: scale(20); opacity:0; }
+@keyframes rippleEffect {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(var(--scale));
+    }
 }

@@ -1,44 +1,26 @@
-window.onload = () => {
-    const selector = '[fk8-ripple]';
-    const fk8Ripple = document.querySelectorAll(selector);
+window.onload = function () {
+    const buttons = document.querySelectorAll('[animation="ripple"]');
 
-    for (const item of fk8Ripple) {
-        const self = item;
-        item.addEventListener('mousedown', function(e) {
-            if(self.classList.contains('disabled')) {
-                return;
-            }
-            if(self.closest(selector)) {
-                e.stopPropagation();
-            }
+    [...buttons].forEach(button => {
+        button.onmousedown = function(e) {
 
-            const style = getComputedStyle(self);
+            const x = e.pageX - this.offsetLeft;
+            const y = e.pageY - this.offsetTop;
+            const w = this.offsetWidth;
 
-            const initPos = style.position;
-            const x = e.pageX - self.offsetLeft;
-            const y = e.pageY - self.offsetTop;
-            const dia = Math.min(this.offsetHeight, this.offsetWidth, 100);
+            const ripple = document.createElement('span');
 
-            // create ripple and append
-            const rippleAnimate = document.createElement('div');
-            rippleAnimate.classList.add('fk8-ripple');
-            self.append(rippleAnimate);
+            ripple.className = 'ripple';
+            ripple.style.left = x + 'px';
+            ripple.style.top  = y + 'px';
+            ripple.style.setProperty('--scale', w);
 
-            if(!initPos || initPos === "static") {
-                self.style.position = 'relative';
-            }
+            console.log(this);
+            this.appendChild(ripple);
 
-            rippleAnimate.classList.add('fk8-wave');
-            rippleAnimate.setAttribute('style', [
-                `width: ${dia}px`,
-                `height: ${dia}px`,
-                `left: ${x - (dia/2)}px`,
-                `top: ${y - (dia/2)}px`,
-            ].join(';'));
-
-            rippleAnimate.addEventListener("animationend", function() {
-                rippleAnimate.remove();
-            }, false);
-        })
-    }
+            setTimeout(() => {
+                ripple.parentNode.removeChild(ripple);
+            }, 500);
+        }
+    })
 }
